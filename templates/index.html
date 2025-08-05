@@ -4,46 +4,98 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Elmo Money Dashboard</title>
-    <link rel="stylesheet" href="static/css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="static/css/styles.css">
 </head>
 <body>
   <div class="overlay">
     <header class="header">
-      <h1>📈 Historical of Money</h1>
+      <h1><i class="fas fa-chart-line"></i> Historical Money Dashboard</h1>
+      <p>Visualize historical currency data, trends, and predictions with interactive charts and analytics</p>
     </header>
 
     <div class="dashboard">
       <div class="sidebar">
         <div class="list">
-          <h2>Active #1</h2>
+          <h2><i class="fas fa-coins"></i> Active #1</h2>
           <ul>
-            <li>Bitcoin</li>
-            <li>Ethereum</li>
-            <li>Solana</li>
+            <li class="active"><i class="fab fa-bitcoin"></i> Bitcoin</li>
+            <li><i class="fab fa-ethereum"></i> Ethereum</li>
+            <li><i class="fas fa-bolt"></i> Solana</li>
           </ul>
         </div>
         <div class="list">
-          <h2>Active #2</h2>
+          <h2><i class="fas fa-chart-bar"></i> Active #2</h2>
           <ul>
-            <li>Gold</li>
-            <li>Oil</li>
-            <li>Silver</li>
+            <li><i class="fas fa-gem"></i> Gold</li>
+            <li><i class="fas fa-gas-pump"></i> Oil</li>
+            <li><i class="fas fa-ring"></i> Silver</li>
           </ul>
         </div>
         <div class="list">
-          <h2>Prediction Algorithm</h2>
+          <h2><i class="fas fa-robot"></i> Prediction Algorithm</h2>
           <ul>
-            <li>LSTM</li>
-            <li>ARIMA</li>
-            <li>XGBoost</li>
+            <li class="active"><i class="fas fa-network-wired"></i> LSTM</li>
+            <li><i class="fas fa-wave-square"></i> ARIMA</li>
+            <li><i class="fas fa-chart-line"></i> XGBoost</li>
           </ul>
+        </div>
+        
+        <div class="controls">
+          <h2><i class="fas fa-sliders-h"></i> Controls</h2>
+          <div class="date-range">
+            <select>
+              <option>1 Day</option>
+              <option>1 Week</option>
+              <option selected>1 Month</option>
+              <option>3 Months</option>
+              <option>6 Months</option>
+              <option>1 Year</option>
+            </select>
+          </div>
+          <div class="btn-group">
+            <button class="btn secondary"><i class="fas fa-sync-alt"></i> Refresh</button>
+            <button class="btn"><i class="fas fa-download"></i> Export</button>
+          </div>
         </div>
       </div>
 
       <div class="plot">
-        <h1>Here must be a dash board in process</h1>
+        <div class="chart-header">
+          <div>
+            <div class="chart-title">Bitcoin (BTC/USD) - Historical Data</div>
+            <div>Last 30 days - LSTM Prediction Model</div>
+          </div>
+          <div class="price-info">
+            <div>Current: <span class="price">$41,387.25</span></div>
+            <div>Change: <span class="change positive">+2.35%</span></div>
+          </div>
+        </div>
+        
+        <div class="chart-container">
+          <div class="chart-card">
+            <div class="chart-title-small"><i class="fas fa-wave-square"></i> Historical Price Movement</div>
+            <div class="chart-wrapper">
+              <canvas id="lineChart"></canvas>
+            </div>
+          </div>
+          
+          <div class="chart-card">
+            <div class="chart-title-small"><i class="fas fa-box"></i> Volatility Analysis (Box Plot)</div>
+            <div class="chart-wrapper">
+              <canvas id="boxPlot"></canvas>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+
+    <div class="footer">
+    </div>
   </div>
+
+  <script src="static/js/script.js">
+  </script>
 </body>
 </html>
