@@ -6,9 +6,9 @@
 File for Machine learning Algorithms and models
 """
 
-def read_data(filename):
+def ml_model_example(data):
 	"""
-	Function example for read data, and clean it and return it
+	function example for a ml algorthms
 	"""
-	data=[1,2,3,4,5,6,7,8,9,10]
+	data_new = list(map(lambda x: x + 1, data))
 	return data

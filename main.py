@@ -13,41 +13,13 @@ from fastapi.requests import Request
 from fastapi.responses import HTMLResponse
 import random
 from datetime import datetime, timedelta
+from tools.pred import *
+from tools.data_reader import *
 
 app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
-
-# Mock data generators
-def generate_historical_data(currency_pair: str):
-    data = []
-    base_price = random.uniform(0.5, 2.0)
-    for i in range(30):
-        date = datetime.now() - timedelta(days=30-i)
-        price = base_price + random.uniform(-0.1, 0.1)
-        data.append({
-            "date": date.strftime("%Y-%m-%d"),
-            "price": round(price, 4),
-            "volume": random.randint(1000000, 5000000)
-        })
-        base_price = price
-    return data
-
-def generate_prediction(currency_pair: str, algorithm: str):
-    current_price = random.uniform(0.5, 2.0)
-    predictions = []
-    for i in range(7):
-        date = datetime.now() + timedelta(days=i+1)
-        change = random.uniform(-0.05, 0.05)
-        predicted_price = current_price + change
-        predictions.append({
-            "date": date.strftime("%Y-%m-%d"),
-            "predicted_price": round(predicted_price, 4),
-            "confidence": random.uniform(0.6, 0.95)
-        })
-        current_price = predicted_price
-    return predictions
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
@@ -80,15 +52,18 @@ async def get_algorithms():
 
 @app.get("/api/historical/{currency_pair}")
 async def get_historical_data(currency_pair: str):
+    data = read_data("file")
     return {
         "currency_pair": currency_pair,
-        "data": generate_historical_data(currency_pair)
+        "data": generate_historical_data(data)
     }
 
 @app.get("/api/predict/{currency_pair}")
 async def predict_currency(currency_pair: str, algorithm: str = "lstm"):
+    #predictions = ml_model_example(read_data("file"))
+
     return {
         "currency_pair": currency_pair,
         "algorithm": algorithm,
-        "predictions": generate_prediction(currency_pair, algorithm)
+        "predictions": "xxx"#generate_prediction(currency_pair, algorithm)
     }

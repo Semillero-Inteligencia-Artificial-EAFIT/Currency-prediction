@@ -4,7 +4,7 @@ File for styles*/
 body {
   margin: 0;
   padding: 0;
-  background: url('static/pictures/elmo.png') no-repeat center center fixed;
+  background: url('https://raw.githubusercontent.com/Semillero-Inteligencia-Artificial-EAFIT/Currency-prediction/refs/heads/main/static/pictures/elmo.png') no-repeat center center fixed;
   background-size: cover;
   font-family: 'Segoe UI', sans-serif;
   color: #fff;
