@@ -55,7 +55,7 @@ async def get_historical_data(currency_pair: str):
     data = read_data("file")
     return {
         "currency_pair": currency_pair,
-        "data": generate_historical_data(data)
+        "data": data
     }
 
 @app.get("/api/predict/{currency_pair}")
